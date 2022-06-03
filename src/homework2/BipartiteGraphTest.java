@@ -1,5 +1,6 @@
+package homework2;
 import static org.junit.Assert.*;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 
 /**
@@ -28,6 +29,7 @@ public class BipartiteGraphTest {
         assertEquals("wrong children", "", driver.listChildren ("graph1", "n2"));
         assertEquals("wrong parents", "", driver.listParents ("graph1", "n1"));
         assertEquals("wrong parents", "n1", driver.listParents ("graph1", "n2"));
+        System.out.println("finish");
     }
     
     

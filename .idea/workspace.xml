@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a3127024-aed4-4048-9cd0-d11c0680c617" name="Changes" comment="Init project">
-      <change afterPath="$PROJECT_DIR$/src/BipartiteGraph.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/BlackOrWhiteNode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DirectedEdge.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DirectedGraph.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Edge.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Graph.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Node.java" afterDir="false" />
+    <list default="true" id="a3127024-aed4-4048-9cd0-d11c0680c617" name="Changes" comment="BipartiteGraphTestDriver is ready">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BipartiteGraphTestDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BipartiteGraphTestDriver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/oop_hw2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/oop_hw2.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BipartiteGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/homework2/BipartiteGraph.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BipartiteGraphTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/homework2/BipartiteGraphTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BipartiteGraphTestDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/homework2/BipartiteGraphTestDriver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BlackOrWhiteNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/homework2/BlackOrWhiteNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DirectedEdge.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/homework2/DirectedEdge.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DirectedGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/homework2/DirectedGraph.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Edge.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/homework2/Edge.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Graph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/homework2/Graph.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/homework2/Node.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Simulatable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/homework2/Simulatable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SimulatorTestDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/homework2/SimulatorTestDriver.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,8 +43,13 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "last_opened_file_path": "C:/Users/davidelonez/IdeaProjects/oop_hw2",
     "project.structure.last.edited": "Modules",
@@ -52,6 +62,22 @@
       <recent name="C:\Users\davidelonez\IdeaProjects\oop_hw2\src" />
     </key>
   </component>
+  <component name="RunManager">
+    <configuration name="BipartiteGraphTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="oop_hw2" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="BipartiteGraphTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.BipartiteGraphTest" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -62,7 +88,7 @@
       <updated>1654086082181</updated>
       <workItem from="1654086083840" duration="13627000" />
       <workItem from="1654240675420" duration="205000" />
-      <workItem from="1654240947188" duration="22950000" />
+      <workItem from="1654240947188" duration="28879000" />
     </task>
     <task id="LOCAL-00001" summary="Init project">
       <created>1654086147936</created>
@@ -71,7 +97,14 @@
       <option name="project" value="LOCAL" />
       <updated>1654086147937</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="BipartiteGraphTestDriver is ready">
+      <created>1654274084295</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1654274084295</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -102,6 +135,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Init project" />
-    <option name="LAST_COMMIT_MESSAGE" value="Init project" />
+    <MESSAGE value="BipartiteGraphTestDriver is ready" />
+    <option name="LAST_COMMIT_MESSAGE" value="BipartiteGraphTestDriver is ready" />
   </component>
 </project>

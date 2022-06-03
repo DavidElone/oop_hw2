@@ -1,3 +1,4 @@
+package homework2;
 import java.util.ArrayList;
 
 public class Edge<E> {
@@ -11,16 +12,18 @@ public class Edge<E> {
     private E label;
     private Node nodeA;
     private Node nodeB;
+    private boolean isDirected;
 
     /**
      * @requires args != null
      * @modifies this
      * @effects create a new edge.
      */
-    Edge(E label, Node<E> nodeA, Node<E> nodeB){
+    Edge(E label, Node<E> nodeA, Node<E> nodeB,boolean isDirected){
         this.label = label;
         this.nodeA = nodeA;
         this.nodeB = nodeB;
+        this.isDirected = isDirected;
     }
 
     /**
@@ -46,6 +49,30 @@ public class Edge<E> {
      */
     public void setNodeB(Node b){
         this.nodeB = b;
+    }
+    /**
+     * @returns parent's node of this
+     */
+    public Node getParent(){//TODO if this.isDirected == false throw exception
+        return getNodeA();
+    }
+    /**
+     * @returns child's node of this
+     */
+    public Node getChild(){
+        return getNodeB();
+    }
+    /**
+     * @modifie parent's node of this to parent
+     */
+    public void setParent(Node parent){
+        setNodeA(parent);
+    }
+    /**
+     * @modifie child's node of this to child
+     */
+    public void setChild(Node child){
+        setNodeB(child);
     }
     /**
      * @returns this.label

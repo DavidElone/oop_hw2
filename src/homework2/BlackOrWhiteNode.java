@@ -1,3 +1,4 @@
+package homework2;
 public class BlackOrWhiteNode<E> extends Node<E>{
     private boolean isBlack;
 

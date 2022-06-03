@@ -1,3 +1,4 @@
+package homework2;
 import javax.swing.*;
 import java.util.ArrayList;
 

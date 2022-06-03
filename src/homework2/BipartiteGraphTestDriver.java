@@ -1,3 +1,4 @@
+package homework2;
 import java.util.*;
 
 /**
@@ -140,7 +141,7 @@ public class BipartiteGraphTestDriver {
      */
     public String listParents(String graphName, String childName) {
         BipartiteGraph<String> graph = this.graphs.get(graphName);
-        List<String> list = graph.listChildren(childName);
+        List<String> list = graph.listParents(childName);
         String output = String.join(" ", list);
         return output;
     	

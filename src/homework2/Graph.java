@@ -1,3 +1,4 @@
+package homework2;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,7 +49,7 @@ public abstract class Graph<E> {
      * @modifies this
      * @effects Adds an edge between nodes names labelA and labelB in this. The new edge's label is edgeLabel.
      */
-    public boolean addEdge(E labelA, E labelB, E edgeLabel) {
+    public boolean addEdge(E labelA, E labelB, E edgeLabel,boolean isDirected) {
 
         if (getEdgeByLabel(labelA,labelB,edgeLabel) != null)
             return false;
@@ -59,7 +60,7 @@ public abstract class Graph<E> {
         if (nodeA == null || nodeB == null)
             return false;
 
-        Edge<E> newEdge = new Edge(edgeLabel, nodeA,  nodeB);
+        Edge<E> newEdge = new Edge(edgeLabel, nodeA,  nodeB,isDirected);
 
         nodeA.addEdge(newEdge);
         nodeB.addEdge(newEdge);

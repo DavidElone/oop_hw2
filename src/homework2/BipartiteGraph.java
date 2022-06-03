@@ -1,3 +1,4 @@
+package homework2;
 import java.util.*;
 
 /**
@@ -15,6 +16,7 @@ public class BipartiteGraph<E> extends DirectedGraph<E>{
      * @modifies this
      * @effects adds node to the graph
      */
+
     public boolean addNode(BlackOrWhiteNode<E> node) {//TODO what if someone call addNode with Node and not BlackOrWhiteNode?
         boolean nodeIsAdded = super.addNode((Node<E>)node);
         if(nodeIsAdded){
@@ -47,7 +49,6 @@ public class BipartiteGraph<E> extends DirectedGraph<E>{
         }
         return false;
     }
-
     @Override
     /**
      * @requires parentLabel , childLabel and edgeLabel != null
@@ -59,17 +60,18 @@ public class BipartiteGraph<E> extends DirectedGraph<E>{
     public boolean addEdge(E parentLabel, E childLabel,
                         E edgeLabel) {
         //check if they have different colors
+
         BlackOrWhiteNode<E> parent = (BlackOrWhiteNode<E>)getNodeByLabel(parentLabel);
         BlackOrWhiteNode<E> child = (BlackOrWhiteNode<E>)getNodeByLabel(childLabel);
         if(parent.isBlack() == child.isBlack()){
             return false;
         }
         //if they do, create edge then call super.addEdge add  setParent and setChild of the edge
-        DirectedEdge<E> edge = new DirectedEdge(edgeLabel,parent,child);
-        boolean edgeIsAdded = super.addEdge(parentLabel,childLabel,edgeLabel);
+        Edge directedEdge = new Edge(edgeLabel,parent,child,true);
+        boolean edgeIsAdded = super.addEdge(parentLabel,childLabel,edgeLabel,true);
         if(edgeIsAdded){
-            edge.setParent(parent);
-            edge.setChild(child);
+            directedEdge.setParent(parent);
+            directedEdge.setChild(child);
             return true;
         }
         return false;
@@ -109,12 +111,12 @@ public class BipartiteGraph<E> extends DirectedGraph<E>{
      * @return the edge that have edgeLabel as label and that is connect from parentLabel's node to childLabel's node
      */
     @Override
-    public DirectedEdge<E> getEdgeByLabel(E parentLabel, E childLabel, E edgeLabel) {
+    public Edge<E> getEdgeByLabel(E parentLabel, E childLabel, E edgeLabel) {
         ArrayList<Edge<E>> edges = getEdges();
         for (int i = 0; i < getEdges().size(); i++) {
             if (edges.get(i).getLabel() == edgeLabel) {
-                if ((((DirectedEdge<E>)edges.get(i)).getParent().getLabel() == parentLabel) && (((DirectedEdge<E>)edges.get(i)).getChild().getLabel() == childLabel))
-                    return ((DirectedEdge<E>)edges.get(i));
+                if ((((Edge<E>)edges.get(i)).getParent().getLabel() == parentLabel) && (((Edge<E>)edges.get(i)).getChild().getLabel() == childLabel))
+                    return ((Edge<E>)edges.get(i));
             }
         }
         return null;
