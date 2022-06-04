@@ -8,7 +8,7 @@ public class Edge<E> {
     // Class that describes a simple edge by his label and the two nodes that it is connecting one to another
 
     //Rep. invariant:
-    // nodeA!=node!B
+    // nodeA != nodeB
     private E label;
     private Node nodeA;
     private Node nodeB;
