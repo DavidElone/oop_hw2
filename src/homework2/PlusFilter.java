@@ -59,7 +59,7 @@ public class PlusFilter extends BlackOrWhiteNode<E> implements Simulatable <E> {
 			if (parentRes.size() == 0)
 				continue;
 			
-			sum = sum + parentRes.get(0);
+			sum += parent.popReadyQueue();
         }
 		
 		addToResultsQueue(sum);
