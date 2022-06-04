@@ -46,9 +46,20 @@ public class IntPipe extends BlackOrWhiteNode<E> implements Simulatable <E> {
 	
 	/**
 	 * @modifies this
+	 * @effects removes and returns the first element in readyQueue
+	 */	
+	public int popReadyQueue() {
+		int res = readyQueue.get(0);
+		readyQueue.remove(0);
+		checkRep();
+		return res;
+	}
+	
+	/**
+	 * @modifies this
 	 * @effects add a work object to the queue of this pipe
 	 */	
-	public void addToEnterWorksQueue(int newWork) {
+	public void addToEnterQueue(int newWork) {
 		enterQueue.add(newWork);
 		checkRep();
 	}
