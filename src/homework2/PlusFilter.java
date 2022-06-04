@@ -10,10 +10,22 @@ public class PlusFilter extends BlackOrWhiteNode<E> implements Simulatable <E> {
 	
 	// Rep. invariant:
 	// field from BlackOrWhiteNode isBlack = false
+	// has one output edge
+	// has zero or more input edges
 	
     private void checkRep()
     {
 		assert this.isBlack == false;
+		ArrayList<Edge<String>> myEdges = this.getEdges();
+		assert myEdges.size() > 0;
+		
+		int singleExit = 0;
+		for (int i = 0; i < myEdges.size(); i++) { 			
+			if (myEdges.get(i).getParent().getLabel() == this.getLabel()) //this is the parent
+				singleExit++;							
+		}
+		
+		assert singleExit == 1;
     }
 	
 	/**
