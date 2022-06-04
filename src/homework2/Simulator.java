@@ -18,7 +18,15 @@ public class Simulator {
     private void checkRep() {
 		assert this.simCount >= 0;
     }
-
+	
+	
+	/**
+	* @returns this.PipesFiltersGraph
+	**/
+	
+	public BipartiteGraph<E> getPipesFiltersGraph() {
+		return this.PipesFiltersGraph;
+	}
 	/**
 	* @requires
 	* @modifies this
@@ -28,18 +36,18 @@ public class Simulator {
 		checkRep();
 		ArrayList<E> pipes = new ArrayList<>();
 		pipes = this.PipesFiltersGraph.listBlackNodes();
-
+		
 		ArrayList<E> filters = new ArrayList<>();
 		filters = this.PipesFiltersGraph.listWhiteNodes();	
 
 		for (int i = 0; i < pipes.size(); i++) { 
-	    pipes.get(i).simulate(PipesFiltersGraph);
-	}
-
+            pipes.get(i).simulate(PipesFiltersGraph); //check
+        }
+		
 		for (int i = 0; i < filters.size(); i++) { 
-	    filters.get(i).simulate(PipesFiltersGraph);
-	}
-
+            filters.get(i).simulate(PipesFiltersGraph); //check
+        }
+		
 		this.simCount++;
 		checkRep();
 	}
