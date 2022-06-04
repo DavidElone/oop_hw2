@@ -53,13 +53,16 @@ public class PlusFilter extends BlackOrWhiteNode<E> implements Simulatable <E> {
 		ArrayList<Edge<String>> myEdges = this.getEdges();
 		
 		for (int i = 0; i < myEdges.size(); i++) { 
-            IntPipe parent = myEdges.get(i).getParent();
-			ArrayList<int> parentRes = parent.getReadyQueue();
-			
-			if (parentRes.size() == 0)
+            Node parent = myEdges.get(i).getParent();
+			if (parent.getLabel() == this.getLabel()) //this is the parent. we want only edges that *enter* this
 				continue;
 			
-			sum += parent.popReadyQueue();
+			IntPipe parentP = (IntPipe)(parent);
+			
+			if (parentP.getReadyQueue().size() == 0)
+				continue;
+			
+			sum += parentP.popReadyQueue();
         }
 		
 		addToResultsQueue(sum);
