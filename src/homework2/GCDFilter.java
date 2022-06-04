@@ -20,18 +20,26 @@ public class GCDFilter extends BlackOrWhiteNode<E> implements Simulatable <E> {
 
 		ArrayList<Edge<String>> myEdges = this.getEdges();
 		assert myEdges.size() == 5;
-		
+		int a = 0, b = 0, gcd = 0;
 		for (int i = 0; i < myEdges.size(); i++) { 
             Node parent = myEdges.get(i).getParent();
-			assert (child.getLabel != "a" && child.getLabel !="b");
 			
 			if (parent.getLabel() == this.getLabel()) { //this is the parent
-				Node child = myEdges.get(i).getChild();
-				assert (child.getLabel != "a" && child.getLabel !="b" && child.getLabel!= "gcd");
+				if (myEdges.get(i).getLabel() == "a") a++;
+				if (myEdges.get(i).getLabel() == "b") b++;
+				if (myEdges.get(i).getLabel() == "gcd") gcd++;
 			}
 			
+			else {
+				if (myEdges.get(i).getLabel() == "a") a++;
+				if (myEdges.get(i).getLabel() == "b") b++;
+			}
 			
 		}
+		
+		assert a == 2;
+		assert b == 2;
+		assert gcd == 1;
 
     }
 	
