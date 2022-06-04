@@ -18,7 +18,7 @@ public class Filter extends BlackOrWhiteNode<E> implements Simulatable <E> {
 	
 	/**
      * @modifies this
-     * @effects Constructs a new Filter with color = black
+     * @effects Constructs a new Filter with color = white
      */
 	public Filter(E label) {
 		super(label, false);
