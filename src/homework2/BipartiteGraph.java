@@ -122,6 +122,9 @@ public class BipartiteGraph<E> extends DirectedGraph<E>{
         return null;
     }
     
+     /**
+     * @returns node from this.blackNodesLabel by its label, null if doesn't exist
+     */
     public Node<E> getBlackNodeByLabel(E label) {
         for (int i = 0; i<this.blackNodesLabel.size(); i++) {
             if (this.blackNodesLabel.get(i).getLabel() == label)
@@ -130,6 +133,9 @@ public class BipartiteGraph<E> extends DirectedGraph<E>{
         return null;
     }
     
+     /**
+     * @returns node from this.whiteNodesLabel by its label, null if doesn't exist
+     */
      public Node<E> getWhiteNodeByLabel(E label) {
         for (int i = 0; i<this.whiteNodesLabel.size(); i++) {
             if (this.whiteNodesLabel.get(i).getLabel() == label)
