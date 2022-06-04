@@ -49,6 +49,9 @@ public class IntPipe extends BlackOrWhiteNode<E> implements Simulatable <E> {
 	 * @effects removes and returns the first element in readyQueue
 	 */	
 	public int popReadyQueue() {
+		if (readyQueue.size() == 0)
+			//TODO add exception
+		
 		int res = readyQueue.get(0);
 		readyQueue.remove(0);
 		checkRep();
