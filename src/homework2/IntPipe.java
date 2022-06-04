@@ -30,7 +30,7 @@ public class IntPipe extends BlackOrWhiteNode<E> implements Simulatable <E> {
 	/**
 	 * @returns enter works queue
 	 */	
-	public ArrayList<workObject> getEnterQueue() {
+	public ArrayList<int> getEnterQueue() {
 		checkRep();
 		return this.enterQueue;
 	}
@@ -38,7 +38,7 @@ public class IntPipe extends BlackOrWhiteNode<E> implements Simulatable <E> {
 	/**
 	 * @returns ready works queue
 	 */	
-	public ArrayList<workObject> getReadyQueue() {
+	public ArrayList<int> getReadyQueue() {
 		checkRep();
 		return this.readyQueue;
 	}
