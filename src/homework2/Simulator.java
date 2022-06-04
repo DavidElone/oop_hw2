@@ -1,6 +1,9 @@
 package homework2;
 import java.util.ArrayList;
 
+//Class that implements a simulator of BipartiteGraph.
+//Pipes are black nodes, filters are white nodes.
+
 public class Simulator {
 	private BipartiteGraph<E> PipesFiltersGraph = new BipartiteGraph<E> ();
 	private int simCount = 0;
@@ -19,7 +22,7 @@ public class Simulator {
 	
 	/**
 	* @modifies this
-	* @effects simulates each pipe, then each filter, then increases the simulator counter
+	* @effects simulates one round - each pipe, then each filter, then increases the simulator counter
 	**/
 	public void simulate() {
 		checkRep()
