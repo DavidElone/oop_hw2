@@ -21,7 +21,7 @@ public class IntPipe extends BlackOrWhiteNode<E> implements Simulatable <E> {
      * @modifies this
      * @effects Constructs a new Pipe with color = black
      */
-	public Pipe(E label) {
+	public IntPipe(E label) {
 		super(label, true);
 		checkRep();
 		
