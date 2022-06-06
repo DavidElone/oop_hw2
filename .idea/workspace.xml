@@ -1,21 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a3127024-aed4-4048-9cd0-d11c0680c617" name="Changes" comment="BipartiteGraphTestDriver is ready">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+    <list default="true" id="a3127024-aed4-4048-9cd0-d11c0680c617" name="Changes" comment="DirectedEdge no more in use.&#10;insteat I added flag isDirected to Edge class.&#10;All defaultTest passed.&#10;Need to remove some prints though">
+      <change afterPath="$PROJECT_DIR$/src/homework2/EdgeNoExists.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/homework2/HelloWorld.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/homework2/LabelAlreadyExists.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/homework2/NoChildException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/homework2/NoChildFound.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/homework2/NoParentException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/homework2/NoParentFound.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/oop_hw2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/oop_hw2.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BipartiteGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/homework2/BipartiteGraph.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BipartiteGraphTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/homework2/BipartiteGraphTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BipartiteGraphTestDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/homework2/BipartiteGraphTestDriver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BlackOrWhiteNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/homework2/BlackOrWhiteNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DirectedEdge.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/homework2/DirectedEdge.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DirectedGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/homework2/DirectedGraph.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Edge.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/homework2/Edge.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Graph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/homework2/Graph.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/homework2/Node.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Simulatable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/homework2/Simulatable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SimulatorTestDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/homework2/SimulatorTestDriver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/homework2/BipartiteGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/homework2/BipartiteGraph.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/homework2/BipartiteGraphTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/homework2/BipartiteGraphTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/homework2/BipartiteGraphTestDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/homework2/BipartiteGraphTestDriver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/homework2/BlackOrWhiteNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/homework2/BlackOrWhiteNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/homework2/DirectedGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/homework2/DirectedGraph.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/homework2/Edge.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/homework2/Edge.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/homework2/GCDFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/homework2/GCDFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/homework2/Graph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/homework2/Graph.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/homework2/IntPipe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/homework2/IntPipe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/homework2/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/homework2/Node.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/homework2/PlusFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/homework2/PlusFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/homework2/Simulatable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/homework2/Simulatable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/homework2/Simulator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/homework2/Simulator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/homework2/SimulatorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/homework2/SimulatorTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/homework2/SimulatorTestDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/homework2/SimulatorTestDriver.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,8 +70,24 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\davidelonez\IdeaProjects\oop_hw2\src" />
     </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="homework2" />
+    </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.HelloWorld">
+    <configuration name="HelloWorld" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="homework2.HelloWorld" />
+      <module name="oop_hw2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="homework2.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="BipartiteGraphTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="oop_hw2" />
       <option name="PACKAGE_NAME" value="" />
@@ -72,8 +97,26 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="BipartiteGraphTest.test2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="oop_hw2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="homework2.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="homework2" />
+      <option name="MAIN_CLASS_NAME" value="homework2.BipartiteGraphTest" />
+      <option name="METHOD_NAME" value="test2" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.HelloWorld" />
+        <item itemvalue="JUnit.BipartiteGraphTest.test2" />
         <item itemvalue="JUnit.BipartiteGraphTest" />
       </list>
     </recent_temporary>
@@ -88,7 +131,7 @@
       <updated>1654086082181</updated>
       <workItem from="1654086083840" duration="13627000" />
       <workItem from="1654240675420" duration="205000" />
-      <workItem from="1654240947188" duration="28879000" />
+      <workItem from="1654240947188" duration="58577000" />
     </task>
     <task id="LOCAL-00001" summary="Init project">
       <created>1654086147936</created>
@@ -104,7 +147,14 @@
       <option name="project" value="LOCAL" />
       <updated>1654274084295</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="DirectedEdge no more in use.&#10;insteat I added flag isDirected to Edge class.&#10;All defaultTest passed.&#10;Need to remove some prints though">
+      <created>1654279962947</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1654279962947</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -136,6 +186,17 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Init project" />
     <MESSAGE value="BipartiteGraphTestDriver is ready" />
-    <option name="LAST_COMMIT_MESSAGE" value="BipartiteGraphTestDriver is ready" />
+    <MESSAGE value="DirectedEdge no more in use.&#10;insteat I added flag isDirected to Edge class.&#10;All defaultTest passed.&#10;Need to remove some prints though" />
+    <option name="LAST_COMMIT_MESSAGE" value="DirectedEdge no more in use.&#10;insteat I added flag isDirected to Edge class.&#10;All defaultTest passed.&#10;Need to remove some prints though" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="homework2.LabelAlreadyExists" package="homework2" />
+          <option name="timeStamp" value="20" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

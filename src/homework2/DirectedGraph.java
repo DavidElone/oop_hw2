@@ -21,33 +21,30 @@ public class DirectedGraph<E> extends Graph<E>{
      */
 
     public boolean addEdge(E parentLabel, E childLabel,
-                        E edgeLabel) {
+                        E edgeLabel) throws NoChildException, NoParentException, LabelAlreadyExists {
         //do the same than Graph.addEdge but now we can choose which node is parent and which is child
         return super.addEdge(parentLabel, childLabel,edgeLabel,true);
     }
     /**
      * @requires parentLabel != null
      * @return a space-separated list of the names of the children of
-     * 		   parentLabel in this, in alphabetical order.
+     * 		   parentLabel in this.
      */
-    public List<E> listChildren(E parentLabel) {
+    public List<E> listChildren(E parentLabel) throws NoChildException {
         
         List<E> childrenLabel = new ArrayList<>();
         Node<E> parentNode = getNodeByLabel(parentLabel);
         //Go over parentNode.edges and find child != parentLabel
-        Edge<E> e = null;
+        Edge<E> edge = null;
         ArrayList<Edge<E>> edges = parentNode.getEdges();
         for (int index = 0; index < edges.size(); index++) {
-            e =  edges.get(index);
-            E child = (E) e.getChild().getLabel();
+            edge =  edges.get(index);
+            E child = (E) edge.getChild().getLabel();
             if(child!=null && child != parentLabel){
                 childrenLabel.add(child);
             }
         }
-        //Collections.sort(nodes);//TODO
         return childrenLabel;
-        //create an empty list
-        // Go over edges of  parentNode and call getChildByEdgeLabel. if getChildByEdgeLabel != null, add it to the list
 
     }
 
@@ -55,27 +52,21 @@ public class DirectedGraph<E> extends Graph<E>{
     /**
      * @requires childLabel != null
      * @return a space-separated list of the names of the parents of
-     * 		   childName in this , in alphabetical order.
+     * 		   childName in this.
      */
-    public List<E> listParents(E childLabel) {
-        System.out.println("We are line 61 before the for each");
+    public List<E> listParents(E childLabel) throws NoParentException {
         List<E> parentsLabel = new ArrayList<>();
         Node<E> childNode = getNodeByLabel(childLabel);
         //Go over parentNode.edges and find child != parentLabel
-        System.out.println("We are line 68 before the for each");
-        Edge<E> e = null;
+        Edge<E> edge = null;
         ArrayList<Edge<E>> edges = childNode.getEdges();
         for (int index = 0; index < edges.size(); index++) {
-            e =  edges.get(index);
-            System.out.println("edge e is "+ e.getLabel());
-            System.out.println("currentEdge is " + e.getLabel());
-            E parent = (E) e.getParent().getLabel();
-            System.out.println("child is " + parent);
+            edge =  edges.get(index);
+            E parent = (E) edge.getParent().getLabel();
             if(parent!=null && parent != childLabel){
                 parentsLabel.add(parent);
             }
         }
-        //Collections.sort(nodes);//TODO
         return parentsLabel;
 
     }
@@ -87,7 +78,7 @@ public class DirectedGraph<E> extends Graph<E>{
      * 		   edge labeled edgeLabel, in this.
      */
     public E getChildByEdgeLabel(E parentLabel,
-                                 E edgeLabel) {
+                                 E edgeLabel) throws NoChildException, NoChildFound {
         // Check if edgeLAbel is in parentLabel.edges , if edgeLabel.getChild =! parentLabel returns it else return exception "you ask for a child of a child"
         Node parent = getNodeByLabel(parentLabel);
         Edge edge = (Edge) parent.getEdge(edgeLabel);
@@ -97,10 +88,10 @@ public class DirectedGraph<E> extends Graph<E>{
                 return (E) child.getLabel();
             }
             else {
-                return null;//TODO need eception here
+                throw new NoChildFound();
             }
         }
-        return null;//TODO need eception here
+        throw new NoChildFound();
 
     }
 
@@ -111,7 +102,7 @@ public class DirectedGraph<E> extends Graph<E>{
      * 		   edge labeled edgeLabel, in this.
      */
     public E getParentByEdgeLabel(E childLabel,
-                                  E edgeLabel) {
+                                  E edgeLabel) throws NoParentException, NoParentFound {
         Node child = getNodeByLabel(childLabel);
         Edge edge = (Edge) child.getEdge(edgeLabel);
         if(child.getEdges().contains(edge)){
@@ -120,10 +111,16 @@ public class DirectedGraph<E> extends Graph<E>{
                 return (E) parent.getLabel();
             }
             else {
-                return null;//TODO need eception here
+                throw new NoParentFound();
             }
         }
-        return null;//TODO need eception here
+        throw new NoParentFound();
 
+    }
+
+    /**
+     * @effects Check that the rep invariant is true.
+     */
+    private void checkRep(){
     }
 }

@@ -1,9 +1,10 @@
 package homework2;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public abstract class Graph<E> {
-    private ArrayList<Node<E>> nodes = new ArrayList<>();
+    private HashMap<E,Node<E>> nodes= new HashMap<>();
     private ArrayList<Edge<E>> edges = new ArrayList<>();
 
 
@@ -19,10 +20,10 @@ public abstract class Graph<E> {
      */
     public boolean addNode(Node<E> node) {
         //add node to nodes if not already in nodes
-        if (getNodes().contains(node))
+        if (getNodes().containsKey(node.getLabel()))
             return false;
 
-        this.nodes.add(node);
+        this.nodes.put(node.getLabel(),node);
         return true;
 
     }
@@ -33,14 +34,8 @@ public abstract class Graph<E> {
      */
     public boolean removeNode(Node<E> node) {
 
-        if (getNodes().contains(node)) {
-            ArrayList<Edge<E>> nodesEdges = node.getEdges();
-            for (int i = 0; i < nodesEdges.size(); i++) { //iterate over edges to delete in this.edges
-                this.edges.remove(nodesEdges.get(i));
-            }
-
-            this.nodes.remove(node);
-            return true;
+        if (getNodes().containsKey(node.getLabel())) {
+            return getNodes().remove(node.getLabel(),node);
         }
         return false;
     }
@@ -49,7 +44,7 @@ public abstract class Graph<E> {
      * @modifies this
      * @effects Adds an edge between nodes names labelA and labelB in this. The new edge's label is edgeLabel.
      */
-    public boolean addEdge(E labelA, E labelB, E edgeLabel,boolean isDirected) {
+    public boolean addEdge(E labelA, E labelB, E edgeLabel,boolean isDirected) throws LabelAlreadyExists, NoChildException, NoParentException {
 
         if (getEdgeByLabel(labelA,labelB,edgeLabel) != null)
             return false;
@@ -75,7 +70,7 @@ public abstract class Graph<E> {
      *          If edge doesn't exist in this - return false. Else return true
      */
     public boolean removeEdge(E labelA, E labelB,
-                           E edgeLabel) {
+                           E edgeLabel) throws EdgeNoExists, NoChildException, NoParentException {
         Edge<E> edgeToRemove = getEdgeByLabel(labelA,labelB,edgeLabel);
         if (edgeToRemove == null)
             return false;
@@ -96,7 +91,8 @@ public abstract class Graph<E> {
      * @returns this.nodes
      */
 
-    public ArrayList<Node<E>> getNodes() {
+    public HashMap<E,Node<E>> getNodes() {
+        checkRep();
         return this.nodes;
     }
 
@@ -106,6 +102,7 @@ public abstract class Graph<E> {
      */
 
     public ArrayList<Edge<E>> getEdges() {
+        checkRep();
         return this.edges;
     }
 
@@ -114,17 +111,13 @@ public abstract class Graph<E> {
      */
 
     public Node<E> getNodeByLabel(E label) {
-        for (int i = 0; i<this.nodes.size(); i++) {
-            if (this.nodes.get(i).getLabel() == label)
-                return  this.nodes.get(i);
-        }
-        return null;
+        return nodes.get(label);
     }
 
     /**
      * @returns edge from this.edges by its label, null if doesn't exist
      */
-    public Edge<E> getEdgeByLabel(E labelA, E labelB, E edgeLabel) {
+    public Edge<E> getEdgeByLabel(E labelA, E labelB, E edgeLabel) throws NoParentException, NoChildException {
 
         for (int i = 0; i < this.edges.size(); i++) {
             if (this.edges.get(i).getLabel() == edgeLabel) {
@@ -133,5 +126,12 @@ public abstract class Graph<E> {
             }
         }
         return null;
+    }
+    /**
+     * @effects Check that the rep invariant is true.
+     */
+    private void checkRep(){
+        assert nodes != null: "nodes is null";
+        assert edges != null: "edges is null";
     }
 }

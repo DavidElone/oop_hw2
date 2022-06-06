@@ -2,8 +2,8 @@ package homework2;
 import java.util.ArrayList;
 
 
-public class PlusFilter extends BlackOrWhiteNode<E> implements Simulatable <E> {
-	private ArrayList<int> resultsQueue = new ArrayList<int>();
+public class PlusFilter extends BlackOrWhiteNode<String> implements Simulatable <String> {
+	private ArrayList<Integer> resultsQueue = new ArrayList<>();
 	
 	// Abstraction Function:
 	// PlusFilter is a white node in the graph that adds numbers from input pipes
@@ -12,36 +12,26 @@ public class PlusFilter extends BlackOrWhiteNode<E> implements Simulatable <E> {
 	// field from BlackOrWhiteNode isBlack = false
 	// has one output edge
 	// has zero or more input edges
-	
-    private void checkRep()
-    {
-		assert this.isBlack == false;
-		ArrayList<Edge<String>> myEdges = this.getEdges();
-		assert myEdges.size() > 0;
-		
-		int singleExit = 0;
-		for (int i = 0; i < myEdges.size(); i++) { 			
-			if (myEdges.get(i).getParent().getLabel() == this.getLabel()) //this is the parent
-				singleExit++;							
-		}
-		
-		assert singleExit == 1;
-    }
-	
+
+
 	/**
-     * @modifies this
-     * @effects Constructs a new PlusFilter with color = white
-     */
-	public PlusFilter(String label) {
+	 * @modifies this
+	 * @effects Constructs a new PlusFilter with color = white
+	 */
+	PlusFilter(String label) throws NoParentException {
 		super(label, false);
+		System.out.println("Creating PlusFilter");
 		checkRep();
-		
+
 	}
+
+	
+
 	
 	/**
 	 * @returns results Queue
 	 */	
-	public ArrayList<int> getResultsQueue() {
+	public ArrayList<Integer> getResultsQueue() throws NoParentException {
 		checkRep();
 		return this.resultsQueue;
 	}
@@ -50,7 +40,7 @@ public class PlusFilter extends BlackOrWhiteNode<E> implements Simulatable <E> {
 	 * @modifies this
 	 * @effects add a result to the queue of this Filter
 	 */	
-	public void addToResultsQueue(int newWork) {
+	public void addToResultsQueue(int newWork) throws NoParentException {
 		resultsQueue.add(newWork);
 		checkRep();
 	}
@@ -58,13 +48,12 @@ public class PlusFilter extends BlackOrWhiteNode<E> implements Simulatable <E> {
 	/**
 	 * @effects Simulates this Filter in a the graph graph_.
 	 */	
-	public void simulate(BipartiteGraph<E> graph_) 
-	{
+	public void simulate(BipartiteGraph<String> graph_) throws NoParentException {
 		checkRep();
 		int sum = 0;
 		ArrayList<Edge<String>> myEdges = this.getEdges();
 		
-		for (int i = 0; i < myEdges.size(); i++) { 
+		for (int i = 0; i < myEdges.size(); i++) {
             Node parent = myEdges.get(i).getParent();
 			if (parent.getLabel() == this.getLabel()) //this is the parent. we want only edges that *enter* this
 				continue;
@@ -81,5 +70,24 @@ public class PlusFilter extends BlackOrWhiteNode<E> implements Simulatable <E> {
 		checkRep();
 		
 	}
-	
+
+	/**
+	 * @effects Check that the rep invariant is true.
+	 */
+	private void checkRep() throws NoParentException {
+		System.out.println("this is black ? "+ this.isBlack() );
+		assert this.isBlack() == false;
+
+		ArrayList<Edge<String>> myEdges = this.getEdges();
+		System.out.println("myEdgesSize is" + myEdges.size());
+		assert myEdges.size() >= 0;
+
+		int numOfExit = 0;
+		for (int i = 0; i < myEdges.size(); i++) {
+			if (myEdges.get(i).getParent().getLabel() == this.getLabel()) //this is the parent
+				numOfExit++;
+		}
+
+		assert numOfExit <= 1;//TODO changed from ==1 to <= talk to Tali about it
+	}
 }

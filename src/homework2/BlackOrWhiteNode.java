@@ -11,7 +11,6 @@ public class BlackOrWhiteNode<E> extends Node<E>{
     BlackOrWhiteNode(E label,boolean isBlack){
         super(label);
         this.isBlack = isBlack;
-        //TODO checkRep();
     }
     public boolean isBlack(){
         return isBlack;

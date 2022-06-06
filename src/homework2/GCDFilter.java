@@ -2,10 +2,10 @@ package homework2;
 import java.util.ArrayList;
 
 
-public class GCDFilter extends BlackOrWhiteNode<E> implements Simulatable <E> {
-	private ArrayList<int> resultsQueue = new ArrayList<int>();
-	private ArrayList<int> aQueue = new ArrayList<int>();
-	private ArrayList<int> bQueue = new ArrayList<int>();
+public class GCDFilter extends BlackOrWhiteNode<String> implements Simulatable <String> {
+	private ArrayList<Integer> resultsQueue = new ArrayList<>();
+	private ArrayList<Integer> aQueue = new ArrayList<>();
+	private ArrayList<Integer> bQueue = new ArrayList<>();
 	// Abstraction Function:
 	// PlusFilter is a white node in the graph that 
 	
@@ -16,30 +16,30 @@ public class GCDFilter extends BlackOrWhiteNode<E> implements Simulatable <E> {
 	
     private void checkRep()
     {
-		assert this.isBlack == false;
-
-		ArrayList<Edge<String>> myEdges = this.getEdges();
-		assert myEdges.size() == 5;
-		int a = 0, b = 0, gcd = 0;
-		for (int i = 0; i < myEdges.size(); i++) { 
-            Node parent = myEdges.get(i).getParent();
-			
-			if (parent.getLabel() == this.getLabel()) { //this is the parent
-				if (myEdges.get(i).getLabel() == "a") a++;
-				if (myEdges.get(i).getLabel() == "b") b++;
-				if (myEdges.get(i).getLabel() == "gcd") gcd++;
-			}
-			
-			else {
-				if (myEdges.get(i).getLabel() == "a") a++;
-				if (myEdges.get(i).getLabel() == "b") b++;
-			}
-			
-		}
-		
-		assert a == 2;
-		assert b == 2;
-		assert gcd == 1;
+		assert this.isBlack() == false;
+		//TODO talk with tali
+//		ArrayList<Edge<E>> myEdges = this.getEdges();
+//		assert myEdges.size() == 5;
+//		int a = 0, b = 0, gcd = 0;
+//		for (int i = 0; i < myEdges.size(); i++) {
+//            Node parent = myEdges.get(i).getParent();
+//
+//			if (parent.getLabel() == this.getLabel()) { //this is the parent
+//				if (myEdges.get(i).getLabel() == "a") a++;
+//				if (myEdges.get(i).getLabel() == "b") b++;
+//				if (myEdges.get(i).getLabel() == "gcd") gcd++;
+//			}
+//
+//			else {
+//				if (myEdges.get(i).getLabel() == "a") a++;
+//				if (myEdges.get(i).getLabel() == "b") b++;
+//			}
+//
+//		}
+//
+//		assert a == 2;
+//		assert b == 2;
+//		assert gcd == 1;
 
     }
 	
@@ -47,7 +47,7 @@ public class GCDFilter extends BlackOrWhiteNode<E> implements Simulatable <E> {
      * @modifies this
      * @effects Constructs a new PlusFilter with color = white
      */
-	public PlusFilter(String label) {
+	public GCDFilter(String label) {
 		super(label, false);
 		checkRep();
 		
@@ -56,7 +56,7 @@ public class GCDFilter extends BlackOrWhiteNode<E> implements Simulatable <E> {
 	/**
 	 * @returns results Queue
 	 */	
-	public ArrayList<int> getResultsQueue() {
+	public ArrayList<Integer> getResultsQueue() {
 		checkRep();
 		return this.resultsQueue;
 	}
@@ -91,22 +91,24 @@ public class GCDFilter extends BlackOrWhiteNode<E> implements Simulatable <E> {
 	/**
 	 * @effects Simulates this Filter in a the graph graph_.
 	 */	
-	public void simulate(BipartiteGraph<E> graph_) 
-	{
+	public void simulate(BipartiteGraph<String> graph_) throws NoParentException {
 		checkRep();
 		ArrayList<Edge<String>> myEdges = this.getEdges();
+		if(myEdges.size() == 0){
+			return;
+		}
+		Integer a=0,b=0;
 		for (int i = 0; i < myEdges.size(); i++) { 
             Node parent = myEdges.get(i).getParent();
 			if (parent.getLabel() == this.getLabel()) //this is the parent. we want only edges that *enter* this
 				continue;
 			
-			IntPipe parentP = (IntPipe)(parent);		
-
+			IntPipe parentP = (IntPipe)(parent);
 			if (parent.getLabel() == "a")
-				int a = parentP.popReadyQueue();
+				a = parentP.popReadyQueue();
 			
 			if (parent.getLabel() == "b")
-				int b = parentP.popReadyQueue();
+				b = parentP.popReadyQueue();
 
         }
 		

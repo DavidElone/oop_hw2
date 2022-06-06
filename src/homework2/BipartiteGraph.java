@@ -6,46 +6,45 @@ import java.util.*;
  */
 public class BipartiteGraph<E> extends DirectedGraph<E>{
 
-    private ArrayList<E> blackNodesLabel = new ArrayList<>();
-    private ArrayList<E> whiteNodesLabel = new ArrayList<>();
-
-    //Override//TODO
+    private HashMap<E,BlackOrWhiteNode<E>> blackNodes= new HashMap<>();
+    private HashMap<E,BlackOrWhiteNode<E>>  whiteNodes = new HashMap<>();
+    @Override
     /**
-     * @requires node != null
+     * @requires node != null and node is of type blackOrWhiteNode
      * @return true if the node has been added
      * @modifies this
      * @effects adds node to the graph
      */
 
-    public boolean addNode(BlackOrWhiteNode<E> node) {//TODO what if someone call addNode with Node and not BlackOrWhiteNode?
-        boolean nodeIsAdded = super.addNode((Node<E>)node);
+    public boolean addNode(Node<E> node) {
+        boolean nodeIsAdded = super.addNode(node);
+        BlackOrWhiteNode<E> nodeToAdd = (BlackOrWhiteNode<E>)node;
         if(nodeIsAdded){
-            if(node.isBlack()) {
-                blackNodesLabel.add(node.getLabel());
+            if(nodeToAdd.isBlack()) {
+                blackNodes.put(nodeToAdd.getLabel(),nodeToAdd);
             }else {
-                whiteNodesLabel.add(node.getLabel());
+                whiteNodes.put(nodeToAdd.getLabel(),nodeToAdd);
             }
             return true;
         }
         return false;
     }
-    //Override//TODO
+    @Override
     /**
-     * @requires node != null
+     * @requires node != null and node is of type blackOrWhiteNode
      * @return true if the node has been removed
      * @modifies this
      * @effects removes node to the graph
      */
-    public boolean removeNode(BlackOrWhiteNode<E> node) {
-        //TODO if super.removeNode returns true, remove node from black/white nodes
-        boolean nodeIsRemoved = super.removeNode((Node<E>) node);
+    public boolean removeNode(Node<E> node) {
+        boolean nodeIsRemoved = super.removeNode(node);
+        BlackOrWhiteNode<E> nodeToRemove = (BlackOrWhiteNode<E>)node;
         if(nodeIsRemoved){
-            if(node.isBlack()) {
-                blackNodesLabel.remove(node.getLabel());
+            if(nodeToRemove.isBlack()) {
+                return blackNodes.remove(nodeToRemove.getLabel(),nodeToRemove);
             }else {
-                whiteNodesLabel.remove(node.getLabel());
+                return whiteNodes.remove(nodeToRemove.getLabel(),nodeToRemove);
             }
-            return true;
         }
         return false;
     }
@@ -58,7 +57,7 @@ public class BipartiteGraph<E> extends DirectedGraph<E>{
      * 			in the graph. The new edge's label is edgeLabel.
      */
     public boolean addEdge(E parentLabel, E childLabel,
-                        E edgeLabel) {
+                        E edgeLabel) throws NoChildException, NoParentException, LabelAlreadyExists {
         //check if they have different colors
 
         BlackOrWhiteNode<E> parent = (BlackOrWhiteNode<E>)getNodeByLabel(parentLabel);
@@ -80,30 +79,25 @@ public class BipartiteGraph<E> extends DirectedGraph<E>{
 
 
     /**
-     * @requires E is comparable ??TODO
-     * @return a space-separated list of the labels of all the black nodes
-     * 		   in the graph, in alphabetical order.
+     * @requires none
+     * @return  list of the labels of all the black nodes
+     * 		   in the graph.
      */
-    public List<E> listBlackNodes() {
-        //TODO sort blackNodes and returns it
-
-       // Collections.sort(blackNodesLabel);//TODO what is the pb. maybe E should be extends Comparable ?
-
-        return blackNodesLabel;
+    public HashMap<E,BlackOrWhiteNode<E>> getListBlackNodes() {
+        checkRep();
+        return blackNodes;
 
     }
 
 
     /**
-     * @requires E is comparable ??TODO
-     * @return a space-separated list of the labels of all the black nodes
-     * 		   in the graph, in alphabetical order.
+     * @requires none
+     * @return  list of the labels of all the white nodes
+     * 		   in the graph.
      */
-    public List<E> listWhiteNodes() {
-        //TODO sort whiteNodes and returns it
-        //Collections.sort(whiteNodesLabel);//TODO what is the pb. maybe E should be extends Comparable ?
-
-        return whiteNodesLabel;
+    public HashMap<E,BlackOrWhiteNode<E>> getListWhiteNodes() {
+        checkRep();
+        return whiteNodes;
 
     }
     /**
@@ -111,7 +105,7 @@ public class BipartiteGraph<E> extends DirectedGraph<E>{
      * @return the edge that have edgeLabel as label and that is connect from parentLabel's node to childLabel's node
      */
     @Override
-    public Edge<E> getEdgeByLabel(E parentLabel, E childLabel, E edgeLabel) {
+    public Edge<E> getEdgeByLabel(E parentLabel, E childLabel, E edgeLabel) throws NoParentException, NoChildException {
         ArrayList<Edge<E>> edges = getEdges();
         for (int i = 0; i < getEdges().size(); i++) {
             if (edges.get(i).getLabel() == edgeLabel) {
@@ -123,25 +117,25 @@ public class BipartiteGraph<E> extends DirectedGraph<E>{
     }
     
      /**
-     * @returns node from this.blackNodesLabel by its label, null if doesn't exist
+     * @returns node from this.blackNodes by its label, null if doesn't exist
      */
-    public Node<E> getBlackNodeByLabel(E label) {
-        for (int i = 0; i<this.blackNodesLabel.size(); i++) {
-            if (this.blackNodesLabel.get(i).getLabel() == label)
-                return  this.blackNodesLabel.get(i);
-        }
-        return null;
+    public Node<E> getBlackNodeByLabel(E label) {//TODO why this function. getNodeByLabel is not enough ?
+        return blackNodes.get(label);
     }
     
      /**
-     * @returns node from this.whiteNodesLabel by its label, null if doesn't exist
+     * @returns node from this.whiteNodes by its label, null if doesn't exist
      */
      public Node<E> getWhiteNodeByLabel(E label) {
-        for (int i = 0; i<this.whiteNodesLabel.size(); i++) {
-            if (this.whiteNodesLabel.get(i).getLabel() == label)
-                return  this.whiteNodesLabel.get(i);
-        }
-        return null;
+         return whiteNodes.get(label);
+    }
+
+    /**
+     * @effects Check that the rep invariant is true.
+     */
+    private void checkRep(){
+        assert blackNodes != null: "blackNodes is null";
+        assert whiteNodes != null: "whiteNodes is null";
     }
 
 

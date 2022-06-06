@@ -1,9 +1,10 @@
 package homework2;
 import java.util.ArrayList;
+import java.util.List;
 
 
 //
-public class Simulator {
+public class Simulator<E> {
 	private BipartiteGraph<E> PipesFiltersGraph = new BipartiteGraph<E> ();
 	private int simCount = 0;
 	
@@ -32,20 +33,17 @@ public class Simulator {
 	* @modifies this
 	* @effects simulates each pipe, then each filter, then increases the simulator counter
 	**/
-	public void simulate() {
+	public void simulate() throws NoParentException {
 		checkRep();
-		ArrayList<E> pipes = new ArrayList<>();
-		pipes = this.PipesFiltersGraph.listBlackNodes();
-		
-		ArrayList<E> filters = new ArrayList<>();
-		filters = this.PipesFiltersGraph.listWhiteNodes();	
+		List<BlackOrWhiteNode<E>> pipes = new ArrayList<>(this.PipesFiltersGraph.getListBlackNodes().values());
+		List<BlackOrWhiteNode<E>> filters = new ArrayList<>(this.PipesFiltersGraph.getListWhiteNodes().values());
 
-		for (int i = 0; i < pipes.size(); i++) { 
-            pipes.get(i).simulate(PipesFiltersGraph); //check
+		for (int i = 0; i < pipes.size(); i++) {
+			((Simulatable)(pipes.get(i))).simulate(PipesFiltersGraph); //check
         }
 		
-		for (int i = 0; i < filters.size(); i++) { 
-            filters.get(i).simulate(PipesFiltersGraph); //check
+		for (int i = 0; i < filters.size(); i++) {
+			((Simulatable)(filters.get(i))).simulate(PipesFiltersGraph); //check
         }
 		
 		this.simCount++;

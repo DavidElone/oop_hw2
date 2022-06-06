@@ -83,7 +83,7 @@ public class BipartiteGraphTestDriver {
      */
     public void addEdge(String graphName,
     					String parentName, String childName, 
-                        String edgeLabel) {
+                        String edgeLabel) throws NoChildException, NoParentException, LabelAlreadyExists {
         BipartiteGraph<String> graph = this.graphs.get(graphName);
         graph.addEdge(parentName,childName,edgeLabel);
     	
@@ -98,7 +98,8 @@ public class BipartiteGraphTestDriver {
      */
     public String listBlackNodes(String graphName) {
         BipartiteGraph<String> graph = this.graphs.get(graphName);
-    	List<String> list = graph.listBlackNodes();
+    	List<String> list = new ArrayList<>(graph.getListBlackNodes().keySet());
+        Collections.sort(list);
         String output = String.join(" ", list);
     	return output;
     }
@@ -111,7 +112,8 @@ public class BipartiteGraphTestDriver {
      */
     public String listWhiteNodes(String graphName) {
         BipartiteGraph<String> graph = this.graphs.get(graphName);
-        List<String> list = graph.listWhiteNodes();
+        List<String> list = new ArrayList<>(graph.getListWhiteNodes().keySet());
+        Collections.sort(list);
         String output = String.join(" ", list);
         return output;
     	
@@ -124,9 +126,10 @@ public class BipartiteGraphTestDriver {
      * @return a space-separated list of the names of the children of
      * 		   parentName in the graph graphName, in alphabetical order.
      */
-    public String listChildren(String graphName, String parentName) {
+    public String listChildren(String graphName, String parentName) throws NoChildException {
         BipartiteGraph<String> graph = this.graphs.get(graphName);
         List<String> list = graph.listChildren(parentName);
+        Collections.sort(list);
         String output = String.join(" ", list);
         return output;
     	
@@ -139,9 +142,10 @@ public class BipartiteGraphTestDriver {
      * @return a space-separated list of the names of the parents of
      * 		   childName in the graph graphName, in alphabetical order.
      */
-    public String listParents(String graphName, String childName) {
+    public String listParents(String graphName, String childName) throws NoParentException {
         BipartiteGraph<String> graph = this.graphs.get(graphName);
         List<String> list = graph.listParents(childName);
+        Collections.sort(list);
         String output = String.join(" ", list);
         return output;
     	
@@ -156,7 +160,7 @@ public class BipartiteGraphTestDriver {
      * 		   edge labeled edgeLabel, in the graph graphName.
      */
     public String getChildByEdgeLabel(String graphName, String parentName,
-    								   String edgeLabel) {
+    								   String edgeLabel) throws NoChildException, NoChildFound {
         BipartiteGraph<String> graph = this.graphs.get(graphName);
         return graph.getChildByEdgeLabel(parentName,edgeLabel);
     	
@@ -171,7 +175,7 @@ public class BipartiteGraphTestDriver {
      * 		   edge labeled edgeLabel, in the graph graphName.
      */
     public String getParentByEdgeLabel(String graphName, String childName,
-    									String edgeLabel) {
+    									String edgeLabel) throws NoParentException, NoParentFound {
         BipartiteGraph<String> graph = this.graphs.get(graphName);
         return graph.getParentByEdgeLabel(childName,edgeLabel);
     	

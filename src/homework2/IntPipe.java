@@ -2,19 +2,19 @@ package homework2;
 import java.util.ArrayList;
 
 
-public class IntPipe extends BlackOrWhiteNode<E> implements Simulatable <E> {
-	private ArrayList<int> enterQueue = new ArrayList<int>();
-	private ArrayList<int> readyQueue = new ArrayList<int>();
+public class IntPipe extends BlackOrWhiteNode<String> implements Simulatable <String> {
+	private ArrayList<Integer> enterQueue = new ArrayList<>();
+	private ArrayList<Integer> readyQueue = new ArrayList<>();
 	
 	// Abstraction Function:
-	// IntPipe is a black node in the graph that transfers the inputs to the output
+	// IntegerPipe is a black node in the graph that transfers the inputs to the output
 	
 	// Rep. invariant:
 	// field from BlackOrWhiteNode isBlack = true
 	
     private void checkRep()
     {
-		assert this.isBlack == true;
+		assert this.isBlack() == true;
     }
 	
 	/**
@@ -30,7 +30,7 @@ public class IntPipe extends BlackOrWhiteNode<E> implements Simulatable <E> {
 	/**
 	 * @returns enter works queue
 	 */	
-	public ArrayList<int> getEnterQueue() {
+	public ArrayList<Integer> getEnterQueue() {
 		checkRep();
 		return this.enterQueue;
 	}
@@ -38,7 +38,7 @@ public class IntPipe extends BlackOrWhiteNode<E> implements Simulatable <E> {
 	/**
 	 * @returns ready works queue
 	 */	
-	public ArrayList<int> getReadyQueue() {
+	public ArrayList<Integer> getReadyQueue() {
 		checkRep();
 		return this.readyQueue;
 	}
@@ -48,11 +48,13 @@ public class IntPipe extends BlackOrWhiteNode<E> implements Simulatable <E> {
 	 * @modifies this
 	 * @effects removes and returns the first element in readyQueue
 	 */	
-	public int popReadyQueue() {
-		if (readyQueue.size() == 0)
+	public Integer popReadyQueue() {
+		if (readyQueue.size() == 0){
+
+		}
 			//TODO add exception
 		
-		int res = readyQueue.get(0);
+		Integer res = readyQueue.get(0);
 		readyQueue.remove(0);
 		checkRep();
 		return res;
@@ -62,7 +64,7 @@ public class IntPipe extends BlackOrWhiteNode<E> implements Simulatable <E> {
 	 * @modifies this
 	 * @effects add a work object to the queue of this pipe
 	 */	
-	public void addToEnterQueue(int newWork) {
+	public void addToEnterQueue(Integer newWork) {
 		enterQueue.add(newWork);
 		checkRep();
 	}
@@ -72,9 +74,9 @@ public class IntPipe extends BlackOrWhiteNode<E> implements Simulatable <E> {
 	 * @effects Simulates this pipe in a the graph graph_.
 	 *			Transfers all elements in entry queue to the ready queue.
 	 */	
-	public void simulate(BipartiteGraph<E> graph_) 
+	public void simulate(BipartiteGraph<String> graph_)
 	{
-		for (int i = 0; i < enterQueue.size(); i++) { 
+		for (Integer i = 0; i < enterQueue.size(); i++) { 
             readyQueue.add(enterQueue.get(i));
         }
 		enterQueue.clear();

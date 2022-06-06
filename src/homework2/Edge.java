@@ -24,42 +24,55 @@ public class Edge<E> {
         this.nodeA = nodeA;
         this.nodeB = nodeB;
         this.isDirected = isDirected;
+        checkRep();
     }
 
     /**
      * @returns nodeA
      */
     public Node getNodeA(){
+        checkRep();
         return nodeA;
     }
     /**
      * @returns nodeB
      */
     public Node getNodeB(){
+        checkRep();
         return nodeB;
     }
     /**
      * @modifie nodeA to  a
      */
     public void setNodeA(Node a){
+        checkRep();
         this.nodeA = a;
+        checkRep();
     }
     /**
      * @modifie nodeB to  b
      */
     public void setNodeB(Node b){
+        checkRep();
         this.nodeB = b;
+        checkRep();
     }
     /**
      * @returns parent's node of this
      */
-    public Node getParent(){//TODO if this.isDirected == false throw exception
+    public Node getParent() throws NoParentException{//TODO if this.isDirected == false throw exception
+        if(!isDirected){
+            throw new NoParentException();
+        }
         return getNodeA();
     }
     /**
      * @returns child's node of this
      */
-    public Node getChild(){
+    public Node getChild() throws NoChildException{
+        if(!isDirected){
+            throw new NoChildException();
+        }
         return getNodeB();
     }
     /**
@@ -78,13 +91,18 @@ public class Edge<E> {
      * @returns this.label
      */
     public E getLabel(){
+        checkRep();
         return label;
     }
     /**
-     * @modifie label to  label_
+     * @effects Check that the rep invariant is true.
      */
-    public void setLabel(E label_){
-        this.label = label_;
+    private void checkRep() {
+        assert this.nodeA != null: "nodeA can't be null";
+        assert this.nodeB != null: "nodeB can't be null";
+        assert this.label != null: "label can't be null";
+        assert(!this.nodeA.equals(this.nodeB)): "edge connect between two differents nodes";
+
     }
 
 }
