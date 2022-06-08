@@ -47,10 +47,7 @@ public class SimulatorTestDriver {
      */
     public void addPipe(String simName, String pipeName) {
     	IntPipe newPipe = new IntPipe(pipeName);
-		if (!(simulators.get(simName).getPipesFiltersGraph().addNode(newPipe))){
-
-		}
-			//TODO: add exception
+		simulators.get(simName).getPipesFiltersGraph().addNode(newPipe);
   	
     }
 
@@ -64,14 +61,10 @@ public class SimulatorTestDriver {
      * @effects Creates a new PlusFilter named by the String filterName and
      * 			add it to the simulator named simName.
      */
-    public void addPlusFilter(String simName, String filterName) throws NoParentException {
+    public void addPlusFilter(String simName, String filterName)   {
 		
     	PlusFilter newPlusFilter = new PlusFilter(filterName);
-		if (!(simulators.get(simName).getPipesFiltersGraph().addNode(newPlusFilter))){
-			System.out.println("We into if because we didn't manage to add newPlusFilter");
-
-			//TODO: add exception
-		}
+		simulators.get(simName).getPipesFiltersGraph().addNode(newPlusFilter);
 
 
     	
@@ -87,12 +80,10 @@ public class SimulatorTestDriver {
      * @effects Creates a new GCDFilter named by the string filterName and
      * 			add it to the simulator named simName.
      */
-    public void addGCDFilter(String simName, String filterName) {
+    public void addGCDFilter(String simName, String filterName)   {
 		
     	GCDFilter newGCDFilter = new GCDFilter(filterName);
-		if (!(simulators.get(simName).getPipesFiltersGraph().addNode(newGCDFilter))){
-			//TODO: add exception
-		}
+		simulators.get(simName).getPipesFiltersGraph().addNode(newGCDFilter);
 
 
     	
@@ -115,11 +106,9 @@ public class SimulatorTestDriver {
      */
     public void addEdge(String simName,
     					String parentName, String childName,
-                        String edgeLabel) throws NoChildException, NoParentException, LabelAlreadyExists {
+                        String edgeLabel)  {
 							
-    	if (!(simulators.get(simName).getPipesFiltersGraph().addEdge(parentName, childName, edgeLabel))){
-			//TODO: add exception
-		}
+    	simulators.get(simName).getPipesFiltersGraph().addEdge(parentName, childName, edgeLabel);
 
 
 
@@ -134,8 +123,8 @@ public class SimulatorTestDriver {
      * 			simulator named simName.
      */
     public void injectInput(String simName, String pipeName, int value) {
-    	IntPipe p = (IntPipe) this.simulators.get(simName).getPipesFiltersGraph().getBlackNodeByLabel(pipeName);
-		p.addToEnterQueue(value);
+    	IntPipe p = (IntPipe) this.simulators.get(simName).getPipesFiltersGraph().getBlackNodes().get(pipeName);
+		p.addToQueue(value);
    	
     }
 
@@ -151,20 +140,21 @@ public class SimulatorTestDriver {
 		
     	if (!this.simulators.containsKey(simName))
     		return null;
-
-    	IntPipe p = (IntPipe) this.simulators.get(simName).getPipesFiltersGraph().getBlackNodeByLabel(pipeName); //TODO addedby dez (IntPipe <String>) check with Tali
+		int z =0;
+    	BlackOrWhiteNode<String> blackNode = this.simulators.get(simName).getPipesFiltersGraph().getBlackNodes().get(pipeName);
+		IntPipe p = (IntPipe) blackNode;
     	if (p == null)
     		return null;
     	
     	String str = "";
-    	if (p.getEnterQueue().size() <= 0)
+    	if (p.getQueue().size() <= 0)
     		return str;
 		
-       	for(int i=0; i < p.getEnterQueue().size()-1; i++) {	
-    		str += p.getEnterQueue();
+       	for(int i=0; i < p.getQueue().size()-1; i++) {
+    		str += p.getQueue().get(i);
     		str += " ";
     	}
-		str += p.getEnterQueue().get(p.getEnterQueue().size()-1);
+		str += p.getQueue().get(p.getQueue().size()-1);
     	return str;
 
     	
@@ -175,7 +165,7 @@ public class SimulatorTestDriver {
      * @modifies simulator named simName
      * @effects runs simulator named simName for a single time slice.
      */
-    public void simulate(String simName) throws NoParentException {
+    public void simulate(String simName) throws NoParentException, NoChildException {
     	if (simName == null)
     		return;
     	

@@ -1,13 +1,16 @@
 package homework2;
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Node<E> {
     private E label;
-    private ArrayList<Edge<E>> edges = new ArrayList<>();
+    private ArrayList<DirectedEdge<E>> edges = new ArrayList<>();
+    private HashMap<E,DirectedEdge<E>> edgesIn= new HashMap<>();
+    private HashMap<E,DirectedEdge<E>> edgesOut= new HashMap<>();
 
     //Abstraction function:
-    // Class that describes a simple node with label and edges connected to it
+    // Class that describes a simple node with label and edges,edgesIn,edgesOut connected to it.
 
     //Rep. invariant:
     //can't have two edges with same label
@@ -26,94 +29,67 @@ public class Node<E> {
      *
      * @returns this.edges
      */
-    public ArrayList<Edge<E>> getEdges() {
+    public ArrayList<DirectedEdge<E>> getEdges() {
         checkRep();
         return edges;
     }
-
-
     /**
      *
-     * @returns edge in this.edges by label if exists, else returns null
+     * @returns this.edgesIn
      */
-
-    public Edge<E> getEdge(E label){
+    public HashMap<E,DirectedEdge<E>> getEdgesIn() {
         checkRep();
-        for (int i = 0; i < this.edges.size(); i++) {
-            if (this.edges.get(i).getLabel() == label) {
-                return this.edges.get(i);
-            }
-        }
-        return null;
+        return edgesIn;
     }
     /**
      *
-     * @returns edge in this.edges by label if exists, else returns null
+     * @returns this.edgesIn
      */
-
-    public int getNumOfEdgeWithSameLabel(E label){
+    public HashMap<E,DirectedEdge<E>> getEdgesOut() {
         checkRep();
-        int res = 0;
-        for (int i = 0; i < this.edges.size(); i++) {
-            if (this.edges.get(i).getLabel() == label) {
-                res++;
-            }
-        }
-        return res;
+        return edgesOut;
     }
 
+
     /**
-     *
+     * @requires edge != null
      * @modifies this
-     * @effects adds edge to this.edges if the label doesn't exist. throws exception otherwise
+     * @effects add edge to edgeIn only if it doesn't contain it yet. then if added add it to this.edges
      */
-
-    public void addEdge(Edge<E> e) throws LabelAlreadyExists, NoParentException, NoChildException {
+    public boolean addEdgeIn(DirectedEdge<E> edge) {
         checkRep();
-        Edge<E> edgeWithSameLabel = getEdge(e.getLabel());
-        if (edgeWithSameLabel == null) { //no edge with the label of e
-            edges.add(e);
-        } else if (e.getParent() == edgeWithSameLabel.getChild() || edgeWithSameLabel.getParent() == e.getChild() && getNumOfEdgeWithSameLabel(e.getLabel()) ==1) {//check the case that 2 edge can have the same name
-            edges.add(e);
-        }else {
-            throw new LabelAlreadyExists();
-        }
-        checkRep();
-    }
 
-    /**
-     *
-     * @return true if edge e connected to this
-     */
-    public boolean isConnectedTo(Edge<E> e){
-
-        for (int i = 0; i < this.edges.size(); i++) {
-            if (this.edges.get(i).getLabel() == e.getLabel()) {
-                if (this.edges.get(i).getNodeA().getLabel() == e.getNodeA().getLabel() &&
-                        this.edges.get(i).getNodeB().getLabel() == e.getNodeB().getLabel())
-                    checkRep();
-                    return true;
-            }
-        }
-        checkRep();
-        return false;
-    }
-
-    /**
-     *
-     * @modifies this
-     * @effects removes edge from this.edges, throw exception if there is no edge to remove
-     */
-    public void removeEdge(Edge<E> edge) throws EdgeNoExists {
-        if (!(isConnectedTo(edge))) {
-            throw new EdgeNoExists();
-        }
-        else {
+        DirectedEdge<E> edgeInWithSameLabel = getEdgesIn().get(edge.getLabel());
+        if (edgeInWithSameLabel == null) { //no edge with the label of e
+            getEdgesIn().put(edge.getLabel(), edge);
+            getEdges().add(edge);
             checkRep();
-            this.edges.remove(edge);
+            return true;
+        }else{
+            checkRep();
+            return false;
+        }
+
+    }
+    /**
+     * @requires edge != null
+     * @modifies this
+     * @effects add edge to edgeOut only if it doesn't contain it yet. then if added, add it to this.edges
+     */
+    public boolean addEdgeOut(DirectedEdge<E> edge) {
+        checkRep();
+
+        DirectedEdge<E> edgeOutWithSameLabel = getEdgesOut().get(edge.getLabel());
+        if (edgeOutWithSameLabel == null) { //no edge with the label of e
+            getEdgesOut().put(edge.getLabel(), edge);
+            getEdges().add(edge);
+            checkRep();
+            return true;
+        }else{
+            checkRep();
+            return false;
         }
     }
-
     /**
      *
      * @returns label of this
@@ -127,6 +103,8 @@ public class Node<E> {
      */
     private void checkRep(){
         assert(label != null):"name is null";
-        assert(edges != null):"edges_in is null";
+        assert(edges != null):"edges is null";
+        assert(edgesIn != null):"edgesIn is null";
+        assert(edgesOut != null):"edges is null";
     }
 }

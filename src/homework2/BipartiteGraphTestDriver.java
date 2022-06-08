@@ -83,7 +83,7 @@ public class BipartiteGraphTestDriver {
      */
     public void addEdge(String graphName,
     					String parentName, String childName, 
-                        String edgeLabel) throws NoChildException, NoParentException, LabelAlreadyExists {
+                        String edgeLabel) {
         BipartiteGraph<String> graph = this.graphs.get(graphName);
         graph.addEdge(parentName,childName,edgeLabel);
     	
@@ -160,7 +160,7 @@ public class BipartiteGraphTestDriver {
      * 		   edge labeled edgeLabel, in the graph graphName.
      */
     public String getChildByEdgeLabel(String graphName, String parentName,
-    								   String edgeLabel) throws NoChildException, NoChildFound {
+    								   String edgeLabel) throws NoChildException {
         BipartiteGraph<String> graph = this.graphs.get(graphName);
         return graph.getChildByEdgeLabel(parentName,edgeLabel);
     	
@@ -175,7 +175,7 @@ public class BipartiteGraphTestDriver {
      * 		   edge labeled edgeLabel, in the graph graphName.
      */
     public String getParentByEdgeLabel(String graphName, String childName,
-    									String edgeLabel) throws NoParentException, NoParentFound {
+    									String edgeLabel) throws NoParentException {
         BipartiteGraph<String> graph = this.graphs.get(graphName);
         return graph.getParentByEdgeLabel(childName,edgeLabel);
     	

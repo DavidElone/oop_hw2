@@ -1,13 +1,14 @@
 package homework2;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 
 public class IntPipe extends BlackOrWhiteNode<String> implements Simulatable <String> {
-	private ArrayList<Integer> enterQueue = new ArrayList<>();
-	private ArrayList<Integer> readyQueue = new ArrayList<>();
+	private ArrayList<Integer> queue = new ArrayList<>();
 	
 	// Abstraction Function:
-	// IntegerPipe is a black node in the graph that transfers the inputs to the output
+	// IntegerPipe is a black node in the graph that transfers the data to filters
 	
 	// Rep. invariant:
 	// field from BlackOrWhiteNode isBlack = true
@@ -28,34 +29,24 @@ public class IntPipe extends BlackOrWhiteNode<String> implements Simulatable <St
 	}
 	
 	/**
-	 * @returns enter works queue
+	 * @returns all the works object in the pipe
 	 */	
-	public ArrayList<Integer> getEnterQueue() {
+	public ArrayList<Integer> getQueue() {
 		checkRep();
-		return this.enterQueue;
-	}
-	
-	/**
-	 * @returns ready works queue
-	 */	
-	public ArrayList<Integer> getReadyQueue() {
-		checkRep();
-		return this.readyQueue;
+		return this.queue;
 	}
 	
 	
 	/**
 	 * @modifies this
-	 * @effects removes and returns the first element in readyQueue
+	 * @effects removes and returns the first element in readyQueue. returns 0 if there is no element
 	 */	
-	public Integer popReadyQueue() {
-		if (readyQueue.size() == 0){
-
+	public Integer popQueue() {
+		if (getQueue().size() == 0){
+			return 0;
 		}
-			//TODO add exception
-		
-		Integer res = readyQueue.get(0);
-		readyQueue.remove(0);
+		Integer res = getQueue().get(0);
+		queue.remove(0);
 		checkRep();
 		return res;
 	}
@@ -64,23 +55,30 @@ public class IntPipe extends BlackOrWhiteNode<String> implements Simulatable <St
 	 * @modifies this
 	 * @effects add a work object to the queue of this pipe
 	 */	
-	public void addToEnterQueue(Integer newWork) {
-		enterQueue.add(newWork);
+	public void addToQueue(Integer newWork) {
+		queue.add(newWork);
 		checkRep();
 	}
-	
-	
+
+
 	/**
-	 * @effects Simulates this pipe in a the graph graph_.
-	 *			Transfers all elements in entry queue to the ready queue.
-	 */	
-	public void simulate(BipartiteGraph<String> graph_)
-	{
-		for (Integer i = 0; i < enterQueue.size(); i++) { 
-            readyQueue.add(enterQueue.get(i));
-        }
-		enterQueue.clear();
-		
+	 * @requires none
+	 * @modifies this graph
+	 * @effects Simulates this pipe in a system modeled by graph. If the pipe is empty, the value piped is null.
+	 */
+	public void simulate(BipartiteGraph<String> graph){
+		int index =0;
+		Integer intToPush =0;
+		for (DirectedEdge<String> edgesOut :  this.getEdgesOut().values()) {
+			if(index == 0){
+				 intToPush = this.popQueue();
+			}
+			index++;
+			FilterNode filter = (FilterNode) edgesOut.getChild();
+
+			filter.insetValue(edgesOut.getLabel(),intToPush);
+		}
+
 	}
 	
 }

@@ -1,6 +1,8 @@
 package homework2;
-import static org.junit.Assert.*;
-import org.junit.jupiter.api.Test;
+
+import static org.junit.Assert.assertEquals;
+
+import org.junit.Test;
 
 
 /**
@@ -9,79 +11,76 @@ import org.junit.jupiter.api.Test;
 public class BipartiteGraphTest {
 
 	@Test
-    public void testExample() throws NoParentException, NoChildException, LabelAlreadyExists {
+    public void testExample() throws NoChildException, NoParentException {
         BipartiteGraphTestDriver driver = new BipartiteGraphTestDriver();
 
         //create a graph
         driver.createGraph("graph1");
 
         //add a pair of nodes
-        driver.addBlackNode("graph1", "A");
-        driver.addWhiteNode("graph1", "Az");
+        driver.addBlackNode("graph1", "n1");
+        driver.addWhiteNode("graph1", "n2");
 
         //add an edge
-        driver.addEdge("graph1", "A", "Az", "edge");
+        driver.addEdge("graph1", "n1", "n2", "edge");
 
         //check neighbors
-        assertEquals("wrong black nodes", "A", driver.listBlackNodes("graph1"));
-        assertEquals("wrong white nodes", "Az", driver.listWhiteNodes("graph1"));
-        assertEquals("wrong children", "Az", driver.listChildren ("graph1", "A"));
-        assertEquals("wrong children", "", driver.listChildren ("graph1", "Az"));
-        assertEquals("wrong parents", "", driver.listParents ("graph1", "A"));
-        assertEquals("wrong parents", "A", driver.listParents ("graph1", "Az"));
-        System.out.println("finish");
+        assertEquals("wrong black nodes", "n1", driver.listBlackNodes("graph1"));
+        assertEquals("wrong white nodes", "n2", driver.listWhiteNodes("graph1"));
+        assertEquals("wrong children", "n2", driver.listChildren ("graph1", "n1"));
+        assertEquals("wrong children", "", driver.listChildren ("graph1", "n2"));
+        assertEquals("wrong parents", "", driver.listParents ("graph1", "n1"));
+        assertEquals("wrong parents", "n1", driver.listParents ("graph1", "n2"));
+
     }
 
-
-    @Test
-    public void test2() throws NoChildException, NoParentException, NoChildFound, NoParentFound, LabelAlreadyExists {
+	@Test
+    public void test2() throws NoChildException, NoParentException {
         BipartiteGraphTestDriver driver = new BipartiteGraphTestDriver();
 
         //create a graph
         driver.createGraph("graph2");
 
         //add a pair of nodes
-        driver.addBlackNode("graph2", "A");
-        driver.addWhiteNode("graph2", "Az");
-        driver.addBlackNode("graph2", "C");
-        driver.addWhiteNode("graph2", "Cz");
-        driver.addBlackNode("graph2", "B");
-        driver.addWhiteNode("graph2", "Bz");
+        driver.addBlackNode("graph2", "n1");
+        driver.addWhiteNode("graph2", "n2");
+        driver.addBlackNode("graph2", "n3");
+        driver.addWhiteNode("graph2", "n4");
+        driver.addBlackNode("graph2", "n5");
+        driver.addWhiteNode("graph2", "n6");
 
         //add an edge
-        driver.addEdge("graph2", "Cz", "Az", "z");
-        driver.addEdge("graph2", "Cz", "C", "y");
-        driver.addEdge("graph2", "Cz", "B", "z");
-        driver.addEdge("graph2", "C", "A", "x");
-        driver.addEdge("graph2", "C", "B", "x");
-        driver.addEdge("graph2", "Bz", "C", "x");
-        try {
-        	driver.addEdge("graph2", "Az", "C", "x");
-        }
-        catch(LabelAlreadyExists e) {
-        	System.out.println("LabelAlreadyExists catched");
-        }
+        driver.addEdge("graph2", "n4", "n2", "z");
+        driver.addEdge("graph2", "n4", "n3", "y");
+        driver.addEdge("graph2", "n4", "n5", "z");
+        driver.addEdge("graph2", "n3", "n1", "x");
+        driver.addEdge("graph2", "n3", "n5", "x");
+        driver.addEdge("graph2", "n6", "n3", "x");
+        driver.addEdge("graph2", "n2", "n3", "x");
 
 
 
 
         //check neighbors
-        assertEquals("wrong black nodes", "A B C", driver.listBlackNodes("graph2"));
-        assertEquals("wrong white nodes", "Az Bz Cz", driver.listWhiteNodes("graph2"));
-        assertEquals("wrong children", "", driver.listChildren ("graph2", "A"));
-        assertEquals("wrong children", "B C", driver.listChildren ("graph2", "Cz"));
-        assertEquals("wrong parents", "Bz Cz", driver.listParents ("graph2", "C"));
-        assertEquals("wrong parents", "Cz", driver.listParents ("graph2", "B"));
-        assertEquals("wrong parents", "C", driver.getChildByEdgeLabel("graph2", "Cz","y"));
-        assertEquals("wrong parents", "C", driver.getChildByEdgeLabel("graph2", "Bz","x"));
-        assertEquals("wrong parents", "Cz", driver.getParentByEdgeLabel("graph2", "B","z"));
+        assertEquals("wrong black nodes", "n1 n3 n5", driver.listBlackNodes("graph2"));
+        assertEquals("wrong white nodes", "n2 n4 n6", driver.listWhiteNodes("graph2"));
+        assertEquals("wrong children", "", driver.listChildren ("graph2", "n1"));
+        assertEquals("wrong children", "n3 n5", driver.listChildren ("graph2", "n4"));
+        assertEquals("wrong parents", "n4 n6", driver.listParents ("graph2", "n3"));
+        assertEquals("wrong parents", "n4", driver.listParents ("graph2", "n5"));
+        assertEquals("wrong parents", "n3", driver.getChildByEdgeLabel("graph2", "n4","y"));
+        assertEquals("wrong parents", "n3", driver.getChildByEdgeLabel("graph2", "n6","x"));
+        assertEquals("wrong parents", "n4", driver.getParentByEdgeLabel("graph2", "n5","z"));
 
-
-        System.out.println("finish_2");
 
 
 
     }
+
+
+
+
+    //  TODO: Add black-box tests
 
 
 }

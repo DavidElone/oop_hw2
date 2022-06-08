@@ -33,10 +33,12 @@ public class Simulator<E> {
 	* @modifies this
 	* @effects simulates each pipe, then each filter, then increases the simulator counter
 	**/
-	public void simulate() throws NoParentException {
+	public void simulate() throws NoParentException, NoChildException {
 		checkRep();
 		List<BlackOrWhiteNode<E>> pipes = new ArrayList<>(this.PipesFiltersGraph.getListBlackNodes().values());
 		List<BlackOrWhiteNode<E>> filters = new ArrayList<>(this.PipesFiltersGraph.getListWhiteNodes().values());
+
+
 
 		for (int i = 0; i < pipes.size(); i++) {
 			((Simulatable)(pipes.get(i))).simulate(PipesFiltersGraph); //check

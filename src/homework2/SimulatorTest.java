@@ -1,56 +1,93 @@
 package homework2;
-
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
+import java.util.*;
 import org.junit.Test;
 
-public class SimulatorTest
-{
 
-	/**
-	 * @effects example for a test of Simulator.
-	 */
-	@Test
-    public void testExample() throws NoParentException, NoChildException, LabelAlreadyExists {
-		SimulatorTestDriver driver = new SimulatorTestDriver();
+public class SimulatorTest {
 
-        driver.createSimulator("sim");
+    @Test
+    public void testSimplePlusFilter() throws NoChildException, NoParentException {
+        SimulatorTestDriver simulatorSimplePlusFilter = new SimulatorTestDriver();
+        simulatorSimplePlusFilter.createSimulator("simplePlusFilterSimulation");
 
-        //create and add nodes
-		driver.addPipe("sim", "pipeA");
-		driver.addPipe("sim", "pipeB");
-		driver.addPipe("sim", "pipeC");
-		driver.addPipe("sim", "pipeD");
-		driver.addPipe("sim", "pipeE");
-		driver.addPipe("sim", "pipeF");
-		driver.addPlusFilter("sim", "plusFilter1");
-		driver.addGCDFilter("sim", "gcdFilter1");
+        simulatorSimplePlusFilter.addPlusFilter("simplePlusFilterSimulation", "PlusFilter");
 
+        Integer numOfPipesIn = 3;
 
-        //create and add edges
-        driver.addEdge("sim", "pipeA", "plusFilter1", "pAtoPF1");
-        driver.addEdge("sim", "pipeB", "plusFilter1", "pBtoPF1");
+        for(Integer i = 0; i < numOfPipesIn; i++) {
+            simulatorSimplePlusFilter.addPipe("simplePlusFilterSimulation", String.join("", "pipe_in_", i.toString()));
+            simulatorSimplePlusFilter.addEdge("simplePlusFilterSimulation", String.join("", "pipe_in_", i.toString()), "PlusFilter", String.join("edge_in_", i.toString()));
 
-        driver.addEdge("sim", "pipeC", "gcdFilter1", "a");
-		driver.addEdge("sim", "pipeD", "gcdFilter1", "b");
-		driver.addEdge("sim", "gcdFilter1", "pipeC", "a");
-		driver.addEdge("sim", "gcdFilter1", "pipeD", "b");
-		driver.addEdge("sim", "gcdFilter1", "pipeE", "gcd");
+        }
+
+        simulatorSimplePlusFilter.addPipe("simplePlusFilterSimulation","pipe_out");
+        simulatorSimplePlusFilter.addEdge("simplePlusFilterSimulation", "PlusFilter", "pipe_out", "edge_out");
 
 
+        simulatorSimplePlusFilter.injectInput("simplePlusFilterSimulation", "pipe_in_0", 1);
+        simulatorSimplePlusFilter.injectInput("simplePlusFilterSimulation", "pipe_in_0", 5);
+        simulatorSimplePlusFilter.injectInput("simplePlusFilterSimulation", "pipe_in_0", 6);
+        //System.out.println("pipe_in_0 is " + simulatorSimplePlusFilter.listContents("simplePlusFilterSimulation", "pipe_in_0"));
 
-        //TODO - add checks
+        simulatorSimplePlusFilter.injectInput("simplePlusFilterSimulation", "pipe_in_1", 100);
+        simulatorSimplePlusFilter.injectInput("simplePlusFilterSimulation", "pipe_in_1", 102);
+        //System.out.println("pipe_in_1 is " + simulatorSimplePlusFilter.listContents("simplePlusFilterSimulation", "pipe_in_1"));
+
+        simulatorSimplePlusFilter.injectInput("simplePlusFilterSimulation", "pipe_in_2", 123);
+        simulatorSimplePlusFilter.injectInput("simplePlusFilterSimulation", "pipe_in_2", 7);
+        //System.out.println("pipe_in_2 is " + simulatorSimplePlusFilter.listContents("simplePlusFilterSimulation", "pipe_in_2"));
+
+        Integer numOfRounds = 5;
+
+        for(Integer i = 0; i < numOfRounds; i++) {
+            simulatorSimplePlusFilter.simulate("simplePlusFilterSimulation");
+        }
+        assertEquals("wrong pipe node output", "224 114 6 0 0", simulatorSimplePlusFilter.listContents("simplePlusFilterSimulation", "pipe_out"));
     }
 
+    @Test
+    public void testSimpleGCDFilter() throws NoChildException, NoParentException {
+        SimulatorTestDriver simulatorSimpleGCDFilter = new SimulatorTestDriver();
+        simulatorSimpleGCDFilter.createSimulator("simpleGCDFilterSimulation");
 
-	/**
-	 * @effects create a test for Simulator.
-	 */
-    public void main() throws NoChildException, NoParentException, LabelAlreadyExists {
-    	SimulatorTest tester = new SimulatorTest();
-    	tester.testExample();
+        simulatorSimpleGCDFilter.addGCDFilter("simpleGCDFilterSimulation", "GCDFilter");
+
+        Integer numOfPipesIn = 2;
+        for(Integer i = 0; i < numOfPipesIn; i++) {
+            simulatorSimpleGCDFilter.addPipe("simpleGCDFilterSimulation", String.join("", "pipe_in_", i.toString()));
+            simulatorSimpleGCDFilter.addEdge("simpleGCDFilterSimulation", String.join("", "pipe_in_", i.toString()), "GCDFilter",(i == 0) ? "a" : "b");
+
+        }
+        simulatorSimpleGCDFilter.addPipe("simpleGCDFilterSimulation","pipe_out");
+
+        simulatorSimpleGCDFilter.addEdge("simpleGCDFilterSimulation", "GCDFilter", "pipe_out", "gcd");
+        simulatorSimpleGCDFilter.addEdge("simpleGCDFilterSimulation", "GCDFilter", "pipe_in_0", "a");
+        simulatorSimpleGCDFilter.addEdge("simpleGCDFilterSimulation", "GCDFilter", "pipe_in_1", "b");
+
+
+        simulatorSimpleGCDFilter.injectInput("simpleGCDFilterSimulation", "pipe_in_0", 35);
+        simulatorSimpleGCDFilter.injectInput("simpleGCDFilterSimulation", "pipe_in_0", 12);
+        //System.out.println("pipe_in_0 is " + simulatorSimplePlusFilter.listContents("simplePlusFilterSimulation", "pipe_in_0"));
+
+        simulatorSimpleGCDFilter.injectInput("simpleGCDFilterSimulation", "pipe_in_1", 100);
+        simulatorSimpleGCDFilter.injectInput("simpleGCDFilterSimulation", "pipe_in_1", 45);
+        //System.out.println("pipe_in_1 is " + simulatorSimplePlusFilter.listContents("simplePlusFilterSimulation", "pipe_in_1"));
+
+        Integer numOfRounds = 11;
+
+        for(Integer i = 0; i < numOfRounds; i++) {
+//			System.out.println("pipe_in_0 is " + simulatorSimpleGCDFilter.listContents("simpleGCDFilterSimulation", "pipe_in_0") + " at interation " + i);
+//			System.out.println("pipe_in_1 is " + simulatorSimpleGCDFilter.listContents("simpleGCDFilterSimulation", "pipe_in_1") + " at interation " + i);
+            simulatorSimpleGCDFilter.simulate("simpleGCDFilterSimulation");
+        }
+//		System.out.println("pipe_in_0 is " + simulatorSimpleGCDFilter.listContents("simpleGCDFilterSimulation", "pipe_in_0") + " at end");
+//		System.out.println("pipe_in_1 is " + simulatorSimpleGCDFilter.listContents("simpleGCDFilterSimulation", "pipe_in_1") + " at end" );
+        assertEquals("wrong pipe node output", "5 3 0", simulatorSimpleGCDFilter.listContents("simpleGCDFilterSimulation", "pipe_out"));
     }
-
 }
+
+
 
 
 
