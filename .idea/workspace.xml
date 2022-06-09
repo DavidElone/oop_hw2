@@ -1,29 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a3127024-aed4-4048-9cd0-d11c0680c617" name="Changes" comment="All the current Test pass. Work is not done.&#10;Using HashMap instead of ArrayList for nodes.&#10;Added exceptions and checkreps">
-      <change afterPath="$PROJECT_DIR$/src/homework2/FilterNode.java" afterDir="false" />
+    <list default="true" id="a3127024-aed4-4048-9cd0-d11c0680c617" name="Changes" comment="New version. Test are not ours">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/homework2/BipartiteGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/homework2/BipartiteGraph.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/homework2/BipartiteGraphTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/homework2/BipartiteGraphTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/homework2/BipartiteGraphTestDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/homework2/BipartiteGraphTestDriver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/homework2/DirectedEdge.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/homework2/DirectedEdge.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/homework2/DirectedGraph.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/homework2/Edge.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/homework2/EdgeNoExists.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/homework2/GCDFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/homework2/GCDFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/homework2/Graph.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/homework2/HelloWorld.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/homework2/IntPipe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/homework2/IntPipe.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/homework2/LabelAlreadyExists.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/homework2/NoChildFound.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/homework2/NoParentFound.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/homework2/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/homework2/Node.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/homework2/PlusFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/homework2/PlusFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/homework2/Simulatable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/homework2/Simulatable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/homework2/Simulator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/homework2/Simulator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/homework2/SimulatorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/homework2/SimulatorTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/homework2/SimulatorTestDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/homework2/SimulatorTestDriver.java" afterDir="false" />
     </list>
     <list id="2bd88aac-ae65-44fd-9ff6-44b78c5da9d5" name="Changes by talio" comment="">
       <change beforePath="$PROJECT_DIR$/src/homework2/Simulator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/homework2/Simulator.java" afterDir="false" />
@@ -42,16 +23,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/homework2/Simulator.java">
-      <ranges>
-        <range start1="35" end1="36" start2="35" end2="36" changelist="a3127024-aed4-4048-9cd0-d11c0680c617" />
-        <range start1="39" end1="39" start2="39" end2="41" changelist="a3127024-aed4-4048-9cd0-d11c0680c617" />
-        <range start1="41" end1="42" start2="43" end2="44" changelist="2bd88aac-ae65-44fd-9ff6-44b78c5da9d5" />
-        <range start1="45" end1="46" start2="47" end2="48" changelist="2bd88aac-ae65-44fd-9ff6-44b78c5da9d5" />
-      </ranges>
-    </file>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -145,7 +116,8 @@
       <workItem from="1654240675420" duration="205000" />
       <workItem from="1654240947188" duration="59792000" />
       <workItem from="1654618449588" duration="12682000" />
-      <workItem from="1654671048278" duration="31410000" />
+      <workItem from="1654671048278" duration="32143000" />
+      <workItem from="1654763054509" duration="1789000" />
     </task>
     <task id="LOCAL-00001" summary="Init project">
       <created>1654086147936</created>
@@ -175,7 +147,14 @@
       <option name="project" value="LOCAL" />
       <updated>1654551929517</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="New version. Test are not ours">
+      <created>1654704288538</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1654704288538</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -209,7 +188,8 @@
     <MESSAGE value="BipartiteGraphTestDriver is ready" />
     <MESSAGE value="DirectedEdge no more in use.&#10;insteat I added flag isDirected to Edge class.&#10;All defaultTest passed.&#10;Need to remove some prints though" />
     <MESSAGE value="All the current Test pass. Work is not done.&#10;Using HashMap instead of ArrayList for nodes.&#10;Added exceptions and checkreps" />
-    <option name="LAST_COMMIT_MESSAGE" value="All the current Test pass. Work is not done.&#10;Using HashMap instead of ArrayList for nodes.&#10;Added exceptions and checkreps" />
+    <MESSAGE value="New version. Test are not ours" />
+    <option name="LAST_COMMIT_MESSAGE" value="New version. Test are not ours" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
