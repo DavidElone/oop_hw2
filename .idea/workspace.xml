@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a3127024-aed4-4048-9cd0-d11c0680c617" name="Changes" comment="Final">
-      <change afterPath="$PROJECT_DIR$/src/homework2/NoChildException.java" afterDir="false" />
+    <list default="true" id="a3127024-aed4-4048-9cd0-d11c0680c617" name="Changes" comment="Final with exception">
+      <change afterPath="$PROJECT_DIR$/src/homework2/BlackOrWhiteNode.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <list id="2bd88aac-ae65-44fd-9ff6-44b78c5da9d5" name="Changes by talio" comment="">
@@ -117,7 +117,7 @@
       <workItem from="1654618449588" duration="12682000" />
       <workItem from="1654671048278" duration="32143000" />
       <workItem from="1654763054509" duration="1991000" />
-      <workItem from="1654765398324" duration="347000" />
+      <workItem from="1654765398324" duration="1499000" />
     </task>
     <task id="LOCAL-00001" summary="Init project">
       <created>1654086147936</created>
@@ -161,7 +161,14 @@
       <option name="project" value="LOCAL" />
       <updated>1654764948207</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Final with exception">
+      <created>1654765775683</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1654765775683</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -197,7 +204,8 @@
     <MESSAGE value="All the current Test pass. Work is not done.&#10;Using HashMap instead of ArrayList for nodes.&#10;Added exceptions and checkreps" />
     <MESSAGE value="New version. Test are not ours" />
     <MESSAGE value="Final" />
-    <option name="LAST_COMMIT_MESSAGE" value="Final" />
+    <MESSAGE value="Final with exception" />
+    <option name="LAST_COMMIT_MESSAGE" value="Final with exception" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
